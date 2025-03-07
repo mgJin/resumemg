@@ -1,0 +1,42 @@
+{
+  "name": "resumemg",
+  "version": "1.0.0",
+  "description": "Resume for JMG",
+  "scripts": {
+    "dev": "nodemon",
+    "assets": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgJin/resumemg.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mgJin/resumemg/issues"
+  },
+  "homepage": "https://github.com/mgJin/resumemg#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.10.1",
+    "morgan": "^1.10.0",
+    "path-browserify": "^1.0.1",
+    "pug": "^3.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.9",
+    "@babel/node": "^7.26.0",
+    "@babel/preset-env": "^7.26.9",
+    "babel-loader": "^9.2.1",
+    "css-loader": "^7.1.2",
+    "mini-css-extract-plugin": "^2.9.2",
+    "nodemon": "^3.1.9",
+    "sass": "^1.85.1",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
+  }
+}

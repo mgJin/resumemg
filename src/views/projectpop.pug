@@ -1,0 +1,7 @@
+form#projectForm.infoForm(method="POST",action=`/edit/${loggedInUser._id}/proejct`)
+        input(name="title",type="text",placeholder="프로젝트 명")
+        input(name="startDate",type="date",placeholder ="시작 날짜")
+        input(name="endDate",type="date",placeholder="끝 날짜")
+        input(name="headCount",type="number",placeholder="참여인원")
+        input(name="description",type="text",placeholder="프로젝트 설명")
+        input(type="submit",value="프로젝트 추가")

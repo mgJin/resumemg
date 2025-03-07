@@ -1,0 +1,45 @@
+
+extends base
+include mixins/career
+include mixins/project
+
+block content
+    div.resumeContainer
+        if(loggedIn)    
+            
+            div.profile.infoBox
+                block profile
+                    ul
+                        li.name
+                            p #{user.name}
+                        li.age
+                            p #{user.age}
+                        li.sex
+                            p #{user.sex}
+                        li.email
+                            p #{user.email}
+                        li.phone
+                            p #{user.phoneNumber}
+                        li.address
+                            p #{user.address}
+            
+            div.career.infobox
+                block career
+                div
+                    ul
+                        each career in user.careers
+                            +career(career)
+                        else
+                            span.empty__message No Career Found
+                                
+
+            
+            div.project.infobox
+                block project
+                div
+                    ul
+                        each project in user.projects
+                            +project(proejct)
+                        else
+                            span.empty__message No Proejct Found
+        

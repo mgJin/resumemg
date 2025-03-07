@@ -1,0 +1,13 @@
+form#careerForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return false")
+    if(company)
+        input(name="companyName",type="text",placeholder="회사명",value=company.companyName)
+        input(name="period",type="text",placeholder="기간",value=company.period)
+        input(name="role",type="text",placeholder="역할",value=company.role)
+        button#putCareerBtn 경력 수정
+    else
+        input(name="companyName",type="text",placeholder="회사명")
+        input(name="period",type="text",placeholder="기간")
+        input(name="role",type="text",placeholder="역할")
+        button#postCareerBtn 경력 추가
+
+script(src="/assets/js/fetchData.js")
