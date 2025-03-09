@@ -1,9 +1,25 @@
-
+const path = require("path");
 
 const careerForm = document.getElementById("careerForm");
 const putCareerBtn = document.getElementById("putCareerBtn");
-
 const postCareerBtn = document.getElementById("postCareerBtn ");
+
+const careerUl = document.getElementById("career__ul");
+
+const methodBtnhandle = (e)=>{
+    if(e.target&&e.target.classList.contains("careerDeleteBtn")){
+
+        const companyid = e.target.parentElement.dataset.companyid
+        const url = e.target.dataset.url;
+        
+        const fullURL = path.join("/",url,companyid);
+        console.log(fullURL);
+    }
+}
+
+careerUl.addEventListener("click",methodBtnhandle);
+
+
 
 //
 if(postCareerBtn){

@@ -1,24 +1,54 @@
-extends home
 
+extends base
+include mixins/career
+include mixins/project
 
-block profile
-    form#profileForm.infoForm
-        input(name="name",type="text",placeholder="이름")
-        input(name="age",type="text",placeholder="나이")
-        input(name="sex",type="text",placeholder="성별")
-        input(name="email",type="email",placeholder="이메일")
-        input(name="phone",type="text",placeholder="폰번호")
-        input(name="address",type="text",placeholder="주소")
-        input(type="submit",value="프로필 수정")
+block content
+    div.resumeContainer
+        if(loggedIn)    
+            
+            div.profile.infoBox
+                    ul
+                        li.name
+                            p #{user.name}
+                        li.age
+                            p #{user.age}
+                        li.sex
+                            p #{user.sex}
+                        li.email
+                            p #{user.email}
+                        li.phone
+                            p #{user.phoneNumber}
+                        li.address
+                            p #{user.address}
 
-block career
-    button#careerPopBtn(data-url=`career`) 클릭
+            
+            div.career.infobox
+                
+                div
+                    button#careerPopBtn(data-url=`career`) 클릭
+                    ul#career__ul
+                        each career in user.careers
+                            +career(career,true)
+                        else
+                            span.empty__message No Career Found
+                                
 
-block project
-    button#projectPopBtn(data-url=`project`) 클릭
+            
+            div.project.infobox
+                div
+                    button#projectPopBtn(data-url=`project`) 클릭
+                    
+                    ul
+                        each project in user.projects
+                            +project(proejct)
+                        else
+                            span.empty__message No Proejct Found
+        
 
 block scripts 
     script(src="/assets/js/popup.js")
+    script(src="/assets/js/fetchData.js")
     
         
 

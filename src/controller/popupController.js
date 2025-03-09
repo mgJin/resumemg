@@ -34,6 +34,7 @@ export const putCareerPopupEdit = async(req,res)=>{
     return res.status(201).end();
 }
 
+
 export const projectPopup = (req,res)=>{
     return res.render("projectpop");
 }

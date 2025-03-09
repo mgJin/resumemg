@@ -1,7 +1,9 @@
-mixin career(info)
-    div.career__info
-        button.careerEditBtn(data-companyid=info._id,data-url="editCareer") 편집
+mixin career(info,btnShow)
+    div.career__info(data-companyid=info._id)
         span.career__companyName=info.companyName
         span.career__period=info.period
         span.career__role=info.role
+        if(btnShow)
+            button.careerEditBtn(data-url="editCareer") 편집
+            button.careerDeleteBtn(data-url="hadleCareer",data-method="delete") 삭제
 
