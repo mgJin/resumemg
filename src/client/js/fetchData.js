@@ -6,18 +6,38 @@ const postCareerBtn = document.getElementById("postCareerBtn ");
 
 const careerUl = document.getElementById("career__ul");
 
-const methodBtnhandle = (e)=>{
+const baseURL = `/edit`;
+
+const methodBtnhandle = async(e)=>{
     if(e.target&&e.target.classList.contains("careerDeleteBtn")){
 
-        const companyid = e.target.parentElement.dataset.companyid
-        const url = e.target.dataset.url;
+        const {companyid,userid} = e.target.parentElement.dataset
+        const {url,method} = e.target.dataset;
         
-        const fullURL = path.join("/",url,companyid);
-        console.log(fullURL);
+        
+        const fullURL = path.join(baseURL,userid,url);
+        const fetchData = {
+            "companyid":companyid
+        }
+        const result = await fetch(fullURL,{
+            method,
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(fetchData)
+        })
+
+        if(result.status===201){
+            window.location.reload();
+        }
+
     }
 }
 
-careerUl.addEventListener("click",methodBtnhandle);
+
+if(careerUl){
+    careerUl.addEventListener("click",methodBtnhandle);
+}
 
 
 
@@ -57,14 +77,28 @@ if(postCareerBtn){
 
 const handlePutCareer = async(e)=>{
     e.preventDefault();
+    
     const userID = careerForm.dataset.userid;
     let result;
     
     const fetchData = transFormData(careerForm);
-    const {baseURI} = e.target;
+    
+    
+
+    const targetURL = `${userID}`;
+
+    const fullURL  = path.join(baseURL,targetURL,"career");
+
+    const method = e.target.dataset.method;
+    //companyid 를 fetchdata에 추가(더 나은 방안 생각해보기)
+    const companyid = e.target.dataset.companyid;
+    fetchData["companyid"] = companyid;
+    
+    
+  
     try{
-        result = await fetch(baseURI,{
-            method:"PUT",
+        result = await fetch(fullURL,{
+            method,
             headers:{
                 "Content-Type":"application/json",
             },
@@ -79,6 +113,7 @@ const handlePutCareer = async(e)=>{
 }
 
 if(putCareerBtn){
+    
     putCareerBtn.addEventListener("click",handlePutCareer)
 }
 

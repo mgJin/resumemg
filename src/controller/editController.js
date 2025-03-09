@@ -35,4 +35,36 @@ export const postCareer = async(req,res)=>{
 
     return res.status(201).end();
 }
+export const putCareer = async(req,res)=>{
+    const {
+        body:{
+            companyName,
+            period,
+            role,companyid
+        },
+        
+    } = req;
+    
+    await Career.findByIdAndUpdate(companyid,{
+        companyName,
+        period,
+        role
+    })
 
+    return res.status(201).end();
+}
+
+export const deleteCareer = async(req,res)=>{
+    const {companyid} = req.body;
+
+    const targetCompany = await Career.findById(companyid).populate("owner");
+    
+    if(req.session.user._id!=targetCompany.owner._id){
+        return res.status(400).end();
+    }
+
+    const result = await Career.findByIdAndDelete(companyid);
+    console.log("result:",result);
+
+    return res.status(201).end();
+}

@@ -13,26 +13,6 @@ export const getCareerPopupEdit = async(req,res)=>{
     
     return res.render("careerpop",{company});
 }
-export const putCareerPopupEdit = async(req,res)=>{
-    const {
-        body:{
-            companyName,
-            period,
-            role
-        },
-        params:{
-            companyid
-        }
-    } = req;
-    
-    await Career.findByIdAndUpdate(companyid,{
-        companyName,
-        period,
-        role
-    })
-
-    return res.status(201).end();
-}
 
 
 export const projectPopup = (req,res)=>{
