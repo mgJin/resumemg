@@ -37,11 +37,11 @@ block content
             
             div.project.infobox
                 div
-                    button#projectPopBtn(data-url=`project`) 클릭
+                    button#projectPopBtn(data-url=`postproject`) 클릭
                     
-                    ul
+                    ul#project__ul
                         each project in user.projects
-                            +project(proejct)
+                            +project(project,true)
                         else
                             span.empty__message No Proejct Found
         

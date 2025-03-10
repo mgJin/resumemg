@@ -3,7 +3,7 @@ const path = require("path");
 const careerPopBtn = document.getElementById("careerPopBtn");
 const projectPopBtn = document.getElementById("projectPopBtn");
 let careerEditBtns = document.getElementsByClassName("careerEditBtn");
-
+const projectUl = document.getElementById("project__ul");
 /**
  * 경력 수정 팝업 띄우기 버튼
  */
@@ -31,6 +31,28 @@ for(let i=0;i<careerEditBtns.length;i++){
     careerEditBtns.item(i).addEventListener("click",careerEditPopBtnHandler
     )
 }
+
+const handleEachPopup = (e) =>{
+    
+    if(e.target&&e.target.classList.contains("projectEditBtn")){
+        const baseURL = '/popup';
+        const {
+            dataset:{
+                url
+            },
+            parentElement: {
+                dataset:{
+                    projectid
+                }
+            }
+        } = e.target;
+        
+        const fullURL = path.join(baseURL,url,projectid);
+        popUp(fullURL);
+    }
+}
+
+projectUl.addEventListener("click",handleEachPopup)
 
 
 careerPopBtn.addEventListener("click",()=>{

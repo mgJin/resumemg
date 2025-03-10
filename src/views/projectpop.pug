@@ -1,7 +1,17 @@
-form#projectForm.infoForm(method="POST",action=`/edit/${loggedInUser._id}/proejct`)
-        input(name="title",type="text",placeholder="프로젝트 명")
-        input(name="startDate",type="date",placeholder ="시작 날짜")
-        input(name="endDate",type="date",placeholder="끝 날짜")
-        input(name="headCount",type="number",placeholder="참여인원")
-        input(name="description",type="text",placeholder="프로젝트 설명")
-        input(type="submit",value="프로젝트 추가")
+form#projectForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return false")
+        if(project)
+                input(name="title",type="text",placeholder="프로젝트 명",value=project.title)
+                input(name="startDate",type="date",placeholder ="시작 날짜",value=project.startDate)
+                input(name="endDate",type="date",placeholder="끝 날짜",value=project.endDate)
+                input(name="headCount",type="number",placeholder="참여인원",value=project.headCount)
+                input(name="description",type="text",placeholder="프로젝트 설명",value=project.description)
+                button#putProjectBtn(data-method="put",data-projectid=`${project._id}`) 프로젝트 수정
+        else
+                input(name="title",type="text",placeholder="프로젝트 명")
+                input(name="startDate",type="date",placeholder ="시작 날짜")
+                input(name="endDate",type="date",placeholder="끝 날짜")
+                input(name="headCount",type="number",placeholder="참여인원")
+                input(name="description",type="text",placeholder="프로젝트 설명")
+                button#postProjectBtn(data-method="post") 프로젝트 추가
+
+script(src="/assets/js/fetchData.js")

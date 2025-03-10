@@ -1,10 +1,16 @@
 const path = require("path");
 
-const careerForm = document.getElementById("careerForm");
-const putCareerBtn = document.getElementById("putCareerBtn");
-const postCareerBtn = document.getElementById("postCareerBtn ");
 
+const careerForm = document.getElementById("careerForm");
+const postCareerBtn = document.getElementById("postCareerBtn");
+const putCareerBtn = document.getElementById("putCareerBtn");
 const careerUl = document.getElementById("career__ul");
+
+const projectForm= document.getElementById("projectForm");
+const postProjectBtn = document.getElementById("postProjectBtn");
+const putProjectBtn = document.getElementById("putProjectBtn")
+const projectUl = document.getElementById("project__ul");
+
 
 const baseURL = `/edit`;
 
@@ -42,6 +48,7 @@ if(careerUl){
 
 
 //
+
 if(postCareerBtn){
     postCareerBtn.addEventListener("click",async(e)=>{
         e.preventDefault();
@@ -83,8 +90,6 @@ const handlePutCareer = async(e)=>{
     
     const fetchData = transFormData(careerForm);
     
-    
-
     const targetURL = `${userID}`;
 
     const fullURL  = path.join(baseURL,targetURL,"career");
@@ -117,6 +122,93 @@ if(putCareerBtn){
     putCareerBtn.addEventListener("click",handlePutCareer)
 }
 
+const handlePostProject = async(e)=>{
+    
+    
+    const fetchData = transFormData(projectForm);
+    const userid  = projectForm.dataset.userid;
+    const target = `project`
+    const {method} = e.target.dataset
+    
+    const fullURL = path.join(baseURL,userid,target);
+    
+    result = await fetch(fullURL,{
+        method,
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(fetchData)
+    })
+    popUpClose(result.status);
+}
+
+if(postProjectBtn){
+    postProjectBtn.addEventListener("click",handlePostProject)
+}
+
+const handlePutProject = async(e)=> {
+    e.preventDefault();
+    const {projectid} = e.target.dataset
+
+    const fetchData = transFormData(projectForm);
+    const userid  = projectForm.dataset.userid;
+    const target = `project`
+    const {method} = e.target.dataset
+    const fullURL = path.join(baseURL,userid,target);
+
+    fetchData["projectid"] = projectid;
+    
+    result = await fetch(fullURL,{
+        method,
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(fetchData)
+    })
+    popUpClose(result.status);
+    
+}
+if(putProjectBtn){
+    putProjectBtn.addEventListener("click",handlePutProject);
+}
+
+const handleDeleteProject = async(e)=>{
+    if(e.target&&e.target.classList.contains("projectDeleteBtn")){
+        const {projectid,userid} = e.target.parentElement.dataset
+        const {url,method} = e.target.dataset;
+        
+        
+        const fullURL = path.join(baseURL,userid,url);
+        const fetchData = {
+            "projectid":projectid
+        }
+        const result = await fetch(fullURL,{
+            method,
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(fetchData)
+        })
+
+        if(result.status===201){
+            window.location.reload();
+        }
+
+    }
+}
+
+if(projectUl){
+    projectUl.addEventListener("click",handleDeleteProject)
+}
+
+
+
+
+/**
+ * fetch 의 코드가 201 이면
+ * 팝업을 닫으면서 본 창을 reload 하는 함수
+ * @param {HttpStatus} status 
+ */
 const popUpClose = (status)=>{
     if(status ===201){
         window.opener.location.reload();
@@ -130,7 +222,7 @@ const popUpClose = (status)=>{
  */
 const transFormData = (form)=>{
     let fetchData = {};
-    const formData = new FormData(careerForm);
+    const formData = new FormData(form);
     for (const [name,value] of formData){
         fetchData[name] = value;
     }
