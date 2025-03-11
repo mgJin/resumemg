@@ -2,8 +2,22 @@ const path = require("path");
 
 const careerPopBtn = document.getElementById("careerPopBtn");
 const projectPopBtn = document.getElementById("projectPopBtn");
-let careerEditBtns = document.getElementsByClassName("careerEditBtn");
+const profilePopBtn = document.getElementById("profilePopBtn");
 const projectUl = document.getElementById("project__ul");
+let careerEditBtns = document.getElementsByClassName("careerEditBtn");
+
+const profilePopBtnHandler = (e)=>{
+    const baseurl = `/popup`;
+    const target = 'profile';
+    const fullURL = path.join(baseurl,target);
+
+    popUp(fullURL);
+}
+
+profilePopBtn.addEventListener("click",profilePopBtnHandler);
+
+
+
 /**
  * 경력 수정 팝업 띄우기 버튼
  */

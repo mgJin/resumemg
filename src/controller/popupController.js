@@ -5,8 +5,14 @@ export const good = (req,res)=>{
     return res.send("popup");
 }
 
+export const getProfilePopup = (req,res) =>{
+    
+    
+    return res.render("popup/profilepop");
+}
+
 export const careerPopup = (req,res)=>{
-    return res.render("careerpop");
+    return res.render("popup/careerpop");
 }
 export const getCareerPopupEdit = async(req,res)=>{
     const {companyid} = req.params;
@@ -14,12 +20,12 @@ export const getCareerPopupEdit = async(req,res)=>{
     if(!company){
         return res.status(404).end();
     }
-    return res.render("careerpop",{company});
+    return res.render("popup/careerpop",{company});
 }
 
 
 export const projectPopup = (req,res)=>{
-    return res.render("projectpop");
+    return res.render("popup/projectpop");
 }
 
 export const getProjectPopupEdit = async(req,res)=>{
@@ -29,5 +35,5 @@ export const getProjectPopupEdit = async(req,res)=>{
         return res.status(404).end();
     }
     
-    return res.render("projectpop",{project});
+    return res.render("popup/projectpop",{project});
 }

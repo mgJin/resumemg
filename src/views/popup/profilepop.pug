@@ -1,0 +1,10 @@
+form#profileForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return false")
+    input(type=text,name="name",value=loggedInUser.name,placeholder=이름)
+    input(type=text,name="age",value=loggedInUser.age,placeholder=나이)
+    input(type=text,name="address",value=loggedInUser.address,placeholder=주소)
+    input(type=email,name="email",value=loggedInUser.email,placeholder=이메일)
+    input(type=text,name="phoneNumber",value=loggedInUser.phoneNumber,placeholder=폰번호)
+    input(type=text,name="sex",value=loggedInUser.sex,placeholder=성별)
+    button#putProfileBtn(data-method="PUT") 프로필 수정
+
+script(src="/assets/js/fetchData.js")

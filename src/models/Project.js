@@ -6,6 +6,8 @@ const projectSchema = new mongoose.Schema({
     startDate : Date,
     endDate : Date,
     headCount:Number,
+    imagefileUrl:[{type:String}],
+    videofileUrl:{type:String},
     owner:{type:mongoose.Schema.Types.ObjectId,ref:"User"}
 })
 

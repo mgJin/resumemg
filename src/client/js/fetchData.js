@@ -1,3 +1,4 @@
+
 const path = require("path");
 
 
@@ -12,7 +13,13 @@ const putProjectBtn = document.getElementById("putProjectBtn")
 const projectUl = document.getElementById("project__ul");
 
 
+const putProfileBtn = document.getElementById("putProfileBtn");
+
+
 const baseURL = `/edit`;
+const headers = {
+    "Content-Type":"application/json"
+};
 
 const methodBtnhandle = async(e)=>{
     if(e.target&&e.target.classList.contains("careerDeleteBtn")){
@@ -124,20 +131,20 @@ if(putCareerBtn){
 
 const handlePostProject = async(e)=>{
     
+    const fetchData =new FormData(projectForm);
     
-    const fetchData = transFormData(projectForm);
+    // const fetchData = transFormData(projectForm);
+    // console.log(fetchData);
     const userid  = projectForm.dataset.userid;
     const target = `project`
     const {method} = e.target.dataset
     
     const fullURL = path.join(baseURL,userid,target);
-    
+    console.log(fetchData);
     result = await fetch(fullURL,{
         method,
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify(fetchData)
+       
+        body:fetchData
     })
     popUpClose(result.status);
 }
@@ -199,6 +206,35 @@ const handleDeleteProject = async(e)=>{
 
 if(projectUl){
     projectUl.addEventListener("click",handleDeleteProject)
+}
+
+const handlePutProfile = async(e)=>{
+    e.preventDefault();
+    
+    const profileForm = document.getElementById("profileForm");
+    const {userid} = profileForm.dataset;
+    const fetchData = transFormData(profileForm);
+    const target = 'profile';
+    // console.log("hisd");
+    const {method} = e.target.dataset
+    if(!fetchData){
+        return;
+    }
+
+    const fullURL = path.join(baseURL,userid,target);
+    
+    const result = await fetch(fullURL,{
+        method,
+        headers,
+        body:JSON.stringify(fetchData)
+    });
+
+    popUpClose(result.status);
+
+}
+
+if(putProfileBtn){
+    putProfileBtn.addEventListener("click",handlePutProfile);
 }
 
 

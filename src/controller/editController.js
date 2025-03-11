@@ -14,6 +14,29 @@ export const edit = async(req,res)=>{
     return res.render("edit",{user});
 }
 
+export const putProfile = async(req,res)=>{
+
+    const {
+        params:{
+            id},
+        body:{
+            name,age,address,email,phoneNumber,sex
+        }
+    } = req
+
+    try{
+        const user = await User.findByIdAndUpdate(id,{
+            name,age,address,email,phoneNumber,sex
+        })
+    }catch(e){
+        console.log("error occur :",error);
+        return res.status(500).end();
+    }
+    
+    return res.status(201).send("hod");
+}
+
+
 
 export const postCareer = async(req,res)=>{
     const {companyName,period,role} = req.body;
@@ -76,25 +99,26 @@ export const postProject = async(req,res) =>{
             id
         }
     }=req;
+    console.log(req.files);
+    console.log(req.body);
+    // let user = await User.findById(id);
+    // if(!user){
+    //     return res.status(400).render("home");
+    // }
 
-    let user = await User.findById(id);
-    if(!user){
-        return res.status(400).render("home");
-    }
-
-    try{
+    // try{
         
 
-        const newProject = await Proejct.create({
-            title,startDate,endDate,headCount,description,
-            owner:id
-        })
-        user.projects.push(newProject._id);
-        user= await user.save();
+    //     const newProject = await Proejct.create({
+    //         title,startDate,endDate,headCount,description,
+    //         owner:id
+    //     })
+    //     user.projects.push(newProject._id);
+    //     user= await user.save();
 
-    }catch(error){
-        console.log("error : ",error);
-    }
+    // }catch(error){
+    //     console.log("error : ",error);
+    // }
 
     return res.status(201).end();
 }

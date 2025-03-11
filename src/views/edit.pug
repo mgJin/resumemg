@@ -8,19 +8,20 @@ block content
         if(loggedIn)    
             
             div.profile.infoBox
-                    ul
-                        li.name
-                            p #{user.name}
-                        li.age
-                            p #{user.age}
-                        li.sex
-                            p #{user.sex}
-                        li.email
-                            p #{user.email}
-                        li.phone
-                            p #{user.phoneNumber}
-                        li.address
-                            p #{user.address}
+                button#profilePopBtn(data-url='get') 프로필수정
+                ul
+                    li.name
+                        p #{user.name}
+                    li.age
+                        p #{user.age}
+                    li.sex
+                        p #{user.sex}
+                    li.email
+                        p #{user.email}
+                    li.phone
+                        p #{user.phoneNumber}
+                    li.address
+                        p #{user.address}
 
             
             div.career.infobox
