@@ -104,10 +104,13 @@ export const postProject = async(req,res) =>{
         }
     }=req;
     
-    const imagefilepaths =
-    imagefiles.map((imagefile)=>{
-        return imagefile.path
-    });
+    let imagefilepaths =[];
+
+    if(imagefiles){
+        imagefilepaths = imagefiles.map((imagefile)=>{
+            return imagefile.path
+        });
+    }
     const videofilepath = videofile[0].path;
     
     let user = await User.findById(id);

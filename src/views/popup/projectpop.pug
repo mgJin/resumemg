@@ -1,10 +1,15 @@
-div.project__info 
+div.project__box 
+    div.videoContainer
+        video#projectVideo(src=`/${project.videofileUrl}`) 
+        div.videoController
+            span#videoPlay 플레이 &nbsp;&nbsp;
+            
+            span#mute 음소거 &nbsp;&nbsp;
+            input#videoVolume(type="range",name="volume",min="0",max="1",step="0.1")
+    div.project__info
+        span.projectTitle=project.title
 
-    video#projectVideo(src=`/${project.videofileUrl}`) 
-    button#videoPlay 플레이
-    span.projectTitle=project.title
-
-    span.startDate=project.startDate
-    span.endDate=project.endDate
+        span.startDate=project.startDate
+        span.endDate=project.endDate
 
 script(src="/assets/js/video.js")
