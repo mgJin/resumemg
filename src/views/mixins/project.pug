@@ -1,8 +1,0 @@
-mixin project(info,btnShow)
-    div.project__info(data-projectid=info._id,data-userid=`${loggedInUser._id}`)
-        span.projectTitle=info.title
-        span.startDate=info.startDate
-        span.endDate=info.endDate
-        if(btnShow)
-            button.projectEditBtn(data-url="editProject") 편집
-            button.projectDeleteBtn(data-url="project",data-method="delete") 삭제

@@ -97,28 +97,37 @@ export const postProject = async(req,res) =>{
         },
         params :{
             id
+        },
+        files:{
+            videofile,
+            imagefile:imagefiles
         }
     }=req;
-    console.log(req.files);
-    console.log(req.body);
-    // let user = await User.findById(id);
-    // if(!user){
-    //     return res.status(400).render("home");
-    // }
+    
+    const imagefilepaths =
+    imagefiles.map((imagefile)=>{
+        return imagefile.path
+    });
+    const videofilepath = videofile[0].path;
+    
+    let user = await User.findById(id);
+    if(!user){
+        return res.status(400).render("home");
+    }
 
-    // try{
-        
+    try{  
+        const newProject = await Proejct.create({
+            title,startDate,endDate,headCount,description,
+            owner:id,
+            videofileUrl:videofilepath,
+            imagefileUrl:imagefilepaths
+        })
+        user.projects.push(newProject._id);
+        user= await user.save();
 
-    //     const newProject = await Proejct.create({
-    //         title,startDate,endDate,headCount,description,
-    //         owner:id
-    //     })
-    //     user.projects.push(newProject._id);
-    //     user= await user.save();
-
-    // }catch(error){
-    //     console.log("error : ",error);
-    // }
+    }catch(error){
+        console.log("error : ",error);
+    }
 
     return res.status(201).end();
 }

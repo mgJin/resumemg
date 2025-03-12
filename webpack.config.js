@@ -11,7 +11,8 @@ module.exports={
   entry:{
     main : `${BASE_JS}/main.js`,
     popup : `${BASE_JS}/popup.js`,
-    fetchData : `${BASE_JS}/fetchData.js`
+    fetchData : `${BASE_JS}/fetchData.js`,
+    video:`${BASE_JS}/video.js`,
   },
   mode:"development",
   watch:true,

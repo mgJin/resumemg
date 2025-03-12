@@ -1,25 +1,10 @@
-form#projectForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return false",enctype="multipart/form-data")
-        if(project)
-                label(for="videofile") Video File
-                input(id="videofile",type="file",name="videofile",accept="video/*")
-                label(for="imagefile") Image File
-                input(id="imagefile",type="file",name="imagefile",accept="image/*")
-                input(name="title",type="text",placeholder="프로젝트 명",value=project.title)
-                input(name="startDate",type="date",placeholder ="시작 날짜",value=project.startDate)
-                input(name="endDate",type="date",placeholder="끝 날짜",value=project.endDate)
-                input(name="headCount",type="number",placeholder="참여인원",value=project.headCount)
-                input(name="description",type="text",placeholder="프로젝트 설명",value=project.description)
-                button#putProjectBtn(data-method="put",data-projectid=`${project._id}`) 프로젝트 수정
-        else
-                label(for="videofile") Video File
-                input(id="videofile",type="file",name="videofile",accept="video/*")
-                label(for="imagefile") Image File
-                input(id="imagefile",type="file",name="imagefile",accept="image/*")
-                input(name="title",type="text",placeholder="프로젝트 명")
-                input(name="startDate",type="date",placeholder ="시작 날짜")
-                input(name="endDate",type="date",placeholder="끝 날짜")
-                input(name="headCount",type="number",placeholder="참여인원")
-                input(name="description",type="text",placeholder="프로젝트 설명")
-                button#postProjectBtn(data-method="post") 프로젝트 추가
+div.project__info 
 
-script(src="/assets/js/fetchData.js")
+    video#projectVideo(src=`/${project.videofileUrl}`) 
+    button#videoPlay 플레이
+    span.projectTitle=project.title
+
+    span.startDate=project.startDate
+    span.endDate=project.endDate
+
+script(src="/assets/js/video.js")

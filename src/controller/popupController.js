@@ -24,8 +24,19 @@ export const getCareerPopupEdit = async(req,res)=>{
 }
 
 
-export const projectPopup = (req,res)=>{
-    return res.render("popup/projectpop");
+export const getProjectPopup = async(req,res)=>{
+    const {projectid} = req.params;
+
+    const project = await Project.findById(projectid);
+    console.log("project:",project);
+    if(!project){
+        return res.status(400).end();
+    }
+    return res.render("popup/projectpop",{project});
+}
+
+export const projectFormPopup = (req,res)=>{
+    return res.render("popup/projectformpop");
 }
 
 export const getProjectPopupEdit = async(req,res)=>{
@@ -35,5 +46,5 @@ export const getProjectPopupEdit = async(req,res)=>{
         return res.status(404).end();
     }
     
-    return res.render("popup/projectpop",{project});
+    return res.render("popup/projectformpop",{project});
 }

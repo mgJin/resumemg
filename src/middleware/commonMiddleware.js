@@ -28,7 +28,7 @@ export const videoUploadFiles = multer({
 
 const storage = multer.diskStorage({
     destination:(req,file,cb)=>{
-        console.log("file:",file);
+        
         const fileType = file.mimetype.split('/')[0];
         const uploadPath = fileType ==='image'?`uploads/images`:`uploads/videos`;
         cb(null,uploadPath);

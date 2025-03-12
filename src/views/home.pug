@@ -1,7 +1,7 @@
 
 extends base
 include mixins/career
-include mixins/project
+include mixins/projectcapsule
 
 block content
     div.resumeContainer
@@ -38,7 +38,7 @@ block content
                 div
                     ul
                         each project in user.projects
-                            +project(project,false)
+                            +projectcapsule(project,false)
                         else
                             span.empty__message No Proejct Found
         
