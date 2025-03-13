@@ -24,11 +24,17 @@ export const postSignup = async(req,res)=>{
         address,
         email,
         phoneNumber} = req.body;
+
+    const ageYear = age.split("-")[0];
+    const now = new Date();
+    const realAge = now.getFullYear() - Number(ageYear)-1
+    
+
     const newUser=await User.create({
         userId,
         password,
         name,
-        age,
+        age:realAge,
         address,
         email,
         phoneNumber
