@@ -21,14 +21,27 @@ export const putProfile = async(req,res)=>{
             id},
         body:{
             name,age,address,email,phoneNumber,sex
-        }
+        },
+        file
     } = req
+    let user;
+    try{
+        user =  await User.findById(id);
+        
+    }catch(error){
+        console.log("error occur :",error);
+        return res.status(500).end();
+    }
+    if(!user){
+        return res.status(400).end();
+    }
 
     try{
-        const user = await User.findByIdAndUpdate(id,{
-            name,age,address,email,phoneNumber,sex
+        user = await User.findByIdAndUpdate(id,{
+            name,age,address,email,phoneNumber,sex,
+            avatarUrl:file?file.path:user.avatarUrl
         })
-    }catch(e){
+    }catch(error){
         console.log("error occur :",error);
         return res.status(500).end();
     }

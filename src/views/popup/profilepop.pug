@@ -1,4 +1,5 @@
-form#profileForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return false")
+form#profileForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return false",enctype="multipart/form-data")
+    input(name="avatar",type="file",accept="image/*")
     input(type=text,name="name",value=loggedInUser.name,placeholder=이름)
     input(type=text,name="age",value=loggedInUser.age,placeholder=나이)
     input(type=text,name="address",value=loggedInUser.address,placeholder=주소)

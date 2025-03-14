@@ -1,4 +1,5 @@
 
+
 const path = require("path");
 
 
@@ -210,7 +211,7 @@ const handlePutProfile = async(e)=>{
     
     const profileForm = document.getElementById("profileForm");
     const {userid} = profileForm.dataset;
-    const fetchData = transFormData(profileForm);
+    const fetchData = new FormData(profileForm);
     const target = 'profile';
     // console.log("hisd");
     const {method} = e.target.dataset
@@ -222,8 +223,8 @@ const handlePutProfile = async(e)=>{
     
     const result = await fetch(fullURL,{
         method,
-        headers,
-        body:JSON.stringify(fetchData)
+        
+        body:fetchData
     });
 
     popUpClose(result.status);

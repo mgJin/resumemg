@@ -1,14 +1,17 @@
-nav
-    ul
-        li
-            a(href="/") Home
-        if(loggedIn==false)
-            
+header
+    a(href="/").header_logo
+        i.fas.fa-landmark
+    nav
+        ul
             li
-                a(href="/signup") signup
-            li
-                a(href="/login") login
-        else
-            li
-                 a(href="/edit") edit
+                a(href="/") Home
+            if(loggedIn==false)
+                
+                li
+                    a(href="/signup") signup
+                li
+                    a(href="/login") login
+            else
+                li
+                    a(href="/edit") edit
         

@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     email:{type:String},
     phoneNumber:{type:String},
     sex:String,
+    avatarUrl:{type:String},
     careers:[{type:mongoose.Schema.Types.ObjectId,ref:"Career"}],
     projects:[{type:mongoose.Schema.Types.ObjectId,ref:"Project"}],
 

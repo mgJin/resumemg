@@ -8,21 +8,33 @@ block content
         if(loggedIn)    
             
             div.profile.infoBox
-                
-                    ul
-                        li.name
-                            p #{user.name}
-                        li.age
-                            p #{user.age}
-                        li.sex
-                            p #{user.sex}
-                        li.email
-                            p #{user.email}
-                        li.phone
-                            p #{user.phoneNumber}
-                        li.address
-                            p #{user.address}
-            
+                ul
+                    li.name
+                        span.kind 이름
+                        span #{user.name}
+                    li.age
+                        
+                        span.kind 나이 
+                        span #{user.age}
+                    li.sex
+                        p
+                        span.kind 성별
+                        span #{user.sex}
+                    li.email
+                        
+                        span.kind 
+                            i.fas.fa-envelope
+                        span #{user.email}   
+                    li.phone
+                        span.kind
+                            i.fas.fa-phone
+                        span #{user.phoneNumber}
+                    li.address
+                        span.kind 
+                            i.fas.fa-location-dot
+                        span #{user.address}
+                div.profileImage
+                    img(src=`/${user.avatarUrl}`, alt="이미지없음")
             div.career.infobox
                 
                 div

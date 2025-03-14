@@ -17,14 +17,19 @@ export const getSignup = (req,res)=>{
 
 export const postSignup = async(req,res)=>{
     const {
-        userId,
-        password,
-        name,
-        age,
-        address,
-        email,
-        phoneNumber} = req.body;
-
+        body:{
+            userId,
+            password,
+            name,
+            age,
+            address,
+            email,
+            phoneNumber
+        },
+        file
+        }= req;
+    
+    
     const ageYear = age.split("-")[0];
     const now = new Date();
     const realAge = now.getFullYear() - Number(ageYear)-1
@@ -37,8 +42,8 @@ export const postSignup = async(req,res)=>{
         age:realAge,
         address,
         email,
-        phoneNumber
-
+        phoneNumber,
+        avatarUrl:file.path
     });
     console.log(newUser);
 

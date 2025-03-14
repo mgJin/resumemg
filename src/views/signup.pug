@@ -1,7 +1,8 @@
 extends base
 
 block content
-    form.signupForm(method="POST")
+    form.signupForm(method="POST",enctype="multipart/form-data")
+        input(name="avatar",type="file",accept="image/*")
         input(name="userId",type="text",placeholder="아이디")
         input(name="password",type="password",placeholder="비밀번호")
         input(name="name",type="text",placeholder="이름")

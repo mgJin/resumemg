@@ -11,17 +11,26 @@ block content
                 button#profilePopBtn(data-url='get') 프로필수정
                 ul
                     li.name
-                        p #{user.name}
+                        span 이름
+                        span #{user.name}
                     li.age
-                        p #{user.age}
+                        span 나이 
+                        span #{user.age}
                     li.sex
-                        p #{user.sex}
+                        span 성별
+                        span #{user.sex}
                     li.email
-                        p #{user.email}
+                        span 
+                            i.fas.fa-envelope
+                        span #{user.email}   
                     li.phone
-                        p #{user.phoneNumber}
+                        span
+                            i.fas.fa-phone
+                        span #{user.phoneNumber}
                     li.address
-                        p #{user.address}
+                        span 
+                            i.fas.fa-location-dot
+                        span #{user.address}
 
             
             div.career.infobox
