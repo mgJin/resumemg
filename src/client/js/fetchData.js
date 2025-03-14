@@ -133,8 +133,7 @@ const handlePostProject = async(e)=>{
     
     const fetchData =new FormData(projectForm);
     
-    // const fetchData = transFormData(projectForm);
-    // console.log(fetchData);
+
     const userid  = projectForm.dataset.userid;
     const target = `project`
     const {method} = e.target.dataset
@@ -157,20 +156,18 @@ const handlePutProject = async(e)=> {
     e.preventDefault();
     const {projectid} = e.target.dataset
 
-    const fetchData = transFormData(projectForm);
+    const fetchData = new FormData(projectForm);
     const userid  = projectForm.dataset.userid;
     const target = `project`
     const {method} = e.target.dataset
     const fullURL = path.join(baseURL,userid,target);
 
-    fetchData["projectid"] = projectid;
     
+    fetchData.append("projectid",projectid);
     result = await fetch(fullURL,{
         method,
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify(fetchData)
+        
+        body:fetchData
     })
     popUpClose(result.status);
     

@@ -1,9 +1,7 @@
 form#projectForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return false",enctype="multipart/form-data")
         if(project)
                 label(for="videofile") Video File
-                input(id="videofile",type="file",name="videofile",accept="video/*")
-                label(for="imagefile") Image File
-                input(id="imagefile",type="file",name="imagefile",accept="image/*")
+                input(id="videofile",type="file",name="videofile",accept="video/*")            
                 input(name="title",type="text",placeholder="프로젝트 명",value=project.title)
                 input(name="startDate",type="date",placeholder ="시작 날짜",value=project.startDate)
                 input(name="endDate",type="date",placeholder="끝 날짜",value=project.endDate)
@@ -13,10 +11,6 @@ form#projectForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return fal
         else
                 label(for="videofile") Video File
                 input(id="videofile",type="file",name="videofile",accept="video/*")
-                label(for="imagefile") Image File
-                input(id="imagefile",type="file",name="imagefile",accept="image/*")
-                label(for="imagefile2") Image File
-                input(id="imagefile2",type="file",name="imagefile",accept="image/*")
                 input(name="title",type="text",placeholder="프로젝트 명")
                 input(name="startDate",type="date",placeholder ="시작 날짜")
                 input(name="endDate",type="date",placeholder="끝 날짜")

@@ -100,17 +100,17 @@ export const postProject = async(req,res) =>{
         },
         files:{
             videofile,
-            imagefile:imagefiles
+            
         }
     }=req;
     
-    let imagefilepaths =[];
+    // let imagefilepaths =[];
 
-    if(imagefiles){
-        imagefilepaths = imagefiles.map((imagefile)=>{
-            return imagefile.path
-        });
-    }
+    // if(imagefiles){
+    //     imagefilepaths = imagefiles.map((imagefile)=>{
+    //         return imagefile.path
+    //     });
+    // }
     const videofilepath = videofile[0].path;
     
     let user = await User.findById(id);
@@ -123,7 +123,7 @@ export const postProject = async(req,res) =>{
             title,startDate,endDate,headCount,description,
             owner:id,
             videofileUrl:videofilepath,
-            imagefileUrl:imagefilepaths
+            
         })
         user.projects.push(newProject._id);
         user= await user.save();
@@ -138,16 +138,24 @@ export const postProject = async(req,res) =>{
 export const putProject = async(req,res)=>{
     
     const{
-        title,startDate,endDate,headCount,description,projectid
-    } = req.body;
-
+        body:{
+            title,startDate,endDate,headCount,description,projectid
+        },
+        files:{
+            videofile
+        }
+    } = req;
+    console.log("1 :",videofile);
+    const videofilepath = videofile[0].path;
+    
     const target = await Proejct.findById(projectid);
     if(!target){
         return res.status(400).end();
     }
-
+    
     const newProject = await Project.findByIdAndUpdate(projectid,{
-        title,startDate,endDate,headCount,description
+        title,startDate,endDate,headCount,description,
+        videofileUrl:videofilepath
     });
 
     return res.status(201).end();

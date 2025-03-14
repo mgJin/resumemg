@@ -31,6 +31,7 @@ const storage = multer.diskStorage({
         
         const fileType = file.mimetype.split('/')[0];
         const uploadPath = fileType ==='image'?`uploads/images`:`uploads/videos`;
+        console.log("input file:",file);
         cb(null,uploadPath);
     }
 })
