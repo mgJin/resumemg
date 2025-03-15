@@ -11,27 +11,28 @@ block content
                 button#profilePopBtn(data-url='get') 프로필수정
                 ul
                     li.name
-                        span 이름
+                        span.kind 이름
                         span #{user.name}
                     li.age
-                        span 나이 
+                        span.kind 나이 
                         span #{user.age}
                     li.sex
-                        span 성별
+                        span.kind 성별
                         span #{user.sex}
                     li.email
-                        span 
+                        span.kind 
                             i.fas.fa-envelope
                         span #{user.email}   
                     li.phone
-                        span
+                        span.kind
                             i.fas.fa-phone
                         span #{user.phoneNumber}
                     li.address
-                        span 
+                        span.kind 
                             i.fas.fa-location-dot
                         span #{user.address}
-
+                div.profileImage
+                    img(src=`/${user.avatarUrl}`, alt="이미지없음")
             
             div.career.infobox
                 

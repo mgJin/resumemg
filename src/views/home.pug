@@ -8,16 +8,15 @@ block content
         if(loggedIn)    
             
             div.profile.infoBox
+                
                 ul
                     li.name
                         span.kind 이름
                         span #{user.name}
                     li.age
-                        
                         span.kind 나이 
                         span #{user.age}
                     li.sex
-                        p
                         span.kind 성별
                         span #{user.sex}
                     li.email
@@ -35,8 +34,9 @@ block content
                         span #{user.address}
                 div.profileImage
                     img(src=`/${user.avatarUrl}`, alt="이미지없음")
+
             div.career.infobox
-                
+                div.divide 경력
                 div
                     ul
                         each career in user.careers
@@ -44,9 +44,8 @@ block content
                         else
                             span.empty__message No Career Found
                                 
-            
             div.project.infobox
-                
+                div.divide 프로젝트
                 div
                     ul
                         each project in user.projects

@@ -1,0 +1,19 @@
+//프로젝트 설명 박스
+.project__info{
+    display:flex;
+    margin-top: 10px;
+}
+.project__info:hover{
+    opacity: 0.7;
+}
+//요약본 박스
+.projectSummarybox{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    border:1px solid $deep2;
+}
+
+.projectSummary{
+    overflow: hidden ;
+}

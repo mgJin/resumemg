@@ -6,7 +6,9 @@ form#projectForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return fal
                 input(name="startDate",type="date",placeholder ="시작 날짜",value=project.startDate)
                 input(name="endDate",type="date",placeholder="끝 날짜",value=project.endDate)
                 input(name="headCount",type="number",placeholder="참여인원",value=project.headCount)
-                input(name="description",type="text",placeholder="프로젝트 설명",value=project.description)
+                textarea(name="summary",placeholder="프로젝트 요약",row="5",cols="30")
+                textarea(name="description",placeholder="프로젝트 설명",row="5",cols="30")
+                
                 button#putProjectBtn(data-method="put",data-projectid=`${project._id}`) 프로젝트 수정
         else
                 label(for="videofile") Video File
@@ -15,7 +17,8 @@ form#projectForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return fal
                 input(name="startDate",type="date",placeholder ="시작 날짜")
                 input(name="endDate",type="date",placeholder="끝 날짜")
                 input(name="headCount",type="number",placeholder="참여인원")
-                input(name="description",type="text",placeholder="프로젝트 설명")
+                textarea(name="summary",placeholder="프로젝트 요약",row="5",cols="30")
+                textarea(name="description",placeholder="프로젝트 설명",row="5",cols="30")
                 button#postProjectBtn(data-method="post") 프로젝트 추가
 
 script(src="/assets/js/fetchData.js")

@@ -4,6 +4,7 @@ const careerSchema = new mongoose.Schema({
     companyName:{type:String,required:true},    
     period:{type:String,},
     role:{type:String},
+    description:{type:String},
     owner:{type:mongoose.Schema.Types.ObjectId,ref:"User"},
 })
 

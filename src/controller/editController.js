@@ -1,3 +1,4 @@
+
 import Career from "../models/Career";
 import Project from "../models/Project";
 import Proejct from "../models/Project";
@@ -52,7 +53,7 @@ export const putProfile = async(req,res)=>{
 
 
 export const postCareer = async(req,res)=>{
-    const {companyName,period,role} = req.body;
+    const {companyName,period,role,description} = req.body;
     const owner  = req.params.id
     
     let user = await User.findById(owner);
@@ -60,7 +61,7 @@ export const postCareer = async(req,res)=>{
         return res.status(400).render("home");
     }
     const company = await Career.create({
-        companyName,period,role,
+        companyName,period,role,description,
         owner
     })
     user.careers.push(company._id);
@@ -73,7 +74,7 @@ export const putCareer = async(req,res)=>{
         body:{
             companyName,
             period,
-            role,companyid
+            role,companyid,description
         },
         
     } = req;
@@ -81,6 +82,7 @@ export const putCareer = async(req,res)=>{
     await Career.findByIdAndUpdate(companyid,{
         companyName,
         period,
+        description,
         role
     })
     
@@ -106,7 +108,7 @@ export const deleteCareer = async(req,res)=>{
 export const postProject = async(req,res) =>{
     const{
         body:{
-            title,startDate,endDate,headCount,description
+            title,startDate,endDate,headCount,description,summary
         },
         params :{
             id
@@ -117,13 +119,9 @@ export const postProject = async(req,res) =>{
         }
     }=req;
     
-    // let imagefilepaths =[];
-
-    // if(imagefiles){
-    //     imagefilepaths = imagefiles.map((imagefile)=>{
-    //         return imagefile.path
-    //     });
-    // }
+    let formattedStarDate = formatDate(startDate);
+    let formattedEndDate = formatDate(endDate);
+    
     const videofilepath = videofile[0].path;
     
     let user = await User.findById(id);
@@ -133,10 +131,13 @@ export const postProject = async(req,res) =>{
 
     try{  
         const newProject = await Proejct.create({
-            title,startDate,endDate,headCount,description,
+            title,
+            startDate:formattedStarDate,
+            endDate:formattedEndDate,
+            headCount,description,
             owner:id,
             videofileUrl:videofilepath,
-            
+            summary
         })
         user.projects.push(newProject._id);
         user= await user.save();
@@ -152,7 +153,7 @@ export const putProject = async(req,res)=>{
     
     const{
         body:{
-            title,startDate,endDate,headCount,description,projectid
+            title,startDate,endDate,headCount,description,projectid,summary
         },
         files:{
             videofile
@@ -185,4 +186,16 @@ export const deleteProject = async(req,res)=>{
     
 
     return res.status(201).end();
+}
+/**
+ * 
+ * @param {*} date  String 으로 들어온 date
+ */
+const formatDate = (date)=>{
+    let newDate = new Date(date);
+    
+    const strDate = `${newDate.getFullYear()}-${newDate.getMonth().toString().padStart(2,"0")}-${newDate.getDate().toString().padStart(2,"0")}`;
+
+    return strDate;
+    
 }

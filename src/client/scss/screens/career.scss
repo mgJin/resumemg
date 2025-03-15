@@ -1,0 +1,33 @@
+.career__info{
+    display:flex;
+    
+    margin-top:20px;
+    margin-bottom: 20px;
+    gap:10px;
+}
+.career__periodbox{
+    margin-top: 10px;
+    margin-left:10px;
+    
+    border:1px solid $deep2;
+}
+.career__textbox{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.career__detailbox{
+    
+}
+.career__companyName{
+    
+    font-weight: bold;   
+    margin-right: 15px;
+}
+.career__role{
+    font-size:medium;
+    font-weight: lighter;
+    color:grey;
+}

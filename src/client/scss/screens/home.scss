@@ -1,24 +1,26 @@
-// .resumeContainer{
-//     border: solid 1px $deep1;
-// }
-// .infoBox{
-//     margin: 50px;
-//     border:solid 1px $deep2;
-// }
-
-// .profile ul{
-//     display: flex;
-//     flex-wrap:wrap;
-//     border:solid 1px $deep3;
-//     width:70%;
-// }
-// .profile ul li{
-//     flex:0 1 calc(30.33% - 10px);
-//     display: flex;
-//     margin:5px;
-//     border: solid 1px $deep4;
+//최상단 박스
+.resumeContainer{
+    border: solid 1px $deep1;
+}
+//프로필,커리어,프로젝트를 각각 담는 박스
+.infobox{
+    margin: 50px;
+    border:solid 1px $deep2;
+}
+//대분류
+.divide{
+    margin-bottom: 5px;
+    font-weight: bold;
     
-    
+}
+//mixin들 기간 박스
+.homeperiod{
+    width:180px;
+}
+//Mixin들 title 
+.homeMixinTitle{
+    font-size:x-large;
+}
 // }
 // .profile ul li span{
     

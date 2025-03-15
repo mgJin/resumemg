@@ -1,9 +1,13 @@
 mixin projectcapsule(info,btnShow)
     a(href=`/popup/project/${info._id}`)
         div.project__info(data-projectid=info._id,data-userid=`${loggedInUser._id}`)
-            span.projectTitle=info.title
-            span.startDate=info.startDate
-            span.endDate=info.endDate
+            div.projectperiod.homeperiod
+                span.startDate=info.startDate
+                span ~
+                span.endDate=info.endDate
+            div.projectSummarybox
+                span.projectTitle.homeMixinTitle=info.title
+                span.projectSummary=info.summary
             if(btnShow)
                 button.projectEditBtn(data-url="editProject") 편집
                 button.projectDeleteBtn(data-url="project",data-method="delete") 삭제

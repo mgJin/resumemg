@@ -1,8 +1,14 @@
 mixin career(info,btnShow)
     div.career__info(data-companyid=info._id,data-userid=`${loggedInUser._id}`)
-        span.career__companyName=info.companyName
-        span.career__period=info.period
-        span.career__role=info.role
+        div.career__periodbox.homeperiod
+            span.career__period=info.period
+        div.career__textbox
+            div.career__detailbox
+                span.career__companyName.homeMixinTitle=info.companyName
+                span.career__role=info.role
+            div.career__descriptionbox
+                span.career__description=info.description
+            
         if(btnShow)
             button.careerEditBtn(data-url="editCareer") 편집
             button.careerDeleteBtn(data-url="career",data-method="delete") 삭제
