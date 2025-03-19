@@ -5,27 +5,43 @@ block content
         if(project.videofileUrl)
 
             div.videoContainer
-                video#projectVideo(src=`/${project.videofileUrl}`) 
-                div.videoController
-                    input#videoPlayTimeBar(type="range",name="timebar",min="0",step="1",value="0")
-                    p
-                        span#currentPlayTime.videoPlayTime 00 : 00
-                        span /
-                        span#totalPlayTime.videoPlayTime 00 : 00
-                        
-                    span#videoPlay.videoPlayBtn
-                        i.fas.fa-play
+                div.videoScreen
+                    video#projectVideo(src=`/${project.videofileUrl}`) 
+                div.videoController#videoControllerBox
+                    div.videoPlayBtnBox
+                        span#videoPlay.videoPlayBtn
+                            i.fas.fa-play
+                        div.timeline
+                            span#currentPlayTime.videoPlayTime 00 : 00
+                            span.videoPlayTime /
+                            span#totalPlayTime.videoPlayTime 00 : 00
+
+                    input#videoPlayTimeBar.timeline(type="range",name="timebar",min="0",step="1",value="0")
                     
-                    span#mute
-                        i.fas.fa-volume-off
-                    input#videoVolume(type="range",name="volume",min="0",max="1",step="0.1")        
-        
-        div.project__info
-            span.projectTitle=project.title
-            span.headCount=project.headCount
-            span.startDate=project.startDate
-            span.endDate=project.endDate
-            span.description=project.description
+                    div.videoVolumeBox
+                        input#videoVolume(type="range",name="volume",min="0",max="1",step="0.1")        
+                        span#mute
+                            i.fas.fa-volume-off
+
+        div.project__info__detail
+            div.projectTitle.project_detail
+                span.projectTitle.projectKind 프로젝트
+                span.projectTitle=project.title
+            hr
+            div.projectHeadCount.project_detail
+                span.headCount.projectKind 참여인원
+                span.headCount #{project.headCount} 명
+            hr
+            div.projectPeriod.project_detail
+                span.projectKind 제작기간
+                div.date
+                    span.startDate=project.startDate
+                    span ~
+                    span.endDate=project.endDate
+            hr
+            div.projectDescription.project_detail
+                span.description.projectKind 프로젝트 설명
+                span.description=project.description
             
 block scripts
     script(src="/assets/js/video.js")

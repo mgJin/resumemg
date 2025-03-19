@@ -1,6 +1,6 @@
 const video = document.querySelector("video");
-
-
+const videoContainer = document.querySelector(".videoContainer");
+const videoController = document.getElementById("videoControllerBox");
 const playBtn = document.getElementById("videoPlay");
 const playBtnIcon = playBtn.querySelector("i");
 const muteBtn = document.getElementById("mute");
@@ -11,9 +11,11 @@ const totalTime = document.getElementById("totalPlayTime");
 const currentTime = document.getElementById("currentPlayTime");
 const timeBar = document.getElementById("videoPlayTimeBar");
 
+
 let volumeValue = 0.5;
 video.volume = volumeValue;
-
+let mouseMoveTimeout=null;
+let mouseLeaveTimeout = null;
 const handleVideoPlay = (e)=>{
 
     if(video.paused){
@@ -57,6 +59,32 @@ const handleTimeBar = (e)=>{
     video.currentTime = e.target.value;
 }
 
+const handleMouseMove = async(e)=>{
+    if(mouseLeaveTimeout){
+        clearTimeout(mouseLeaveTimeout);
+        mouseLeaveTimeout = null;
+    }
+    if(mouseMoveTimeout){
+        clearTimeout(mouseMoveTimeout);
+        mouseMoveTimeout = null;
+    }
+    videoController.classList.add("show");
+    mouseMoveTimeout=setTimeout(hideController,3000);
+    
+}
+
+const handleMouseLeave = (e)=>{
+    mouseLeaveTimeout = setTimeout(hideController,3000);
+}
+
+const showController = ()=>{
+    videoController.classList.add("show");
+}
+
+const hideController = ()=>{
+    videoController.classList.remove("show");
+}
+
 /**
  * 
  * @param {Number} time
@@ -78,5 +106,6 @@ videoVolumeRange.addEventListener("input",handleVideoVolume)
 video.addEventListener("loadeddata",handleLoadedMetaData);
 video.addEventListener("timeupdate",handleTimeUpdate);
 timeBar.addEventListener("input",handleTimeBar);
-
-
+// videoController.addEventListener("",handleVideoController);
+videoContainer.addEventListener("mousemove",handleMouseMove);
+videoContainer.addEventListener("mouseleave",handleMouseLeave);
