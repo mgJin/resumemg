@@ -1,0 +1,42 @@
+.metaForm{
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+    .inputBox{
+        display:flex;
+        gap:10px;
+        margin:0 auto;
+        align-items: center;
+        label{
+            width:70px;
+            
+        }
+        // border: 1px solid $deep1;
+        input,textarea{
+            width:$inputAndButtonWidth;
+            margin:0 auto;
+            border-radius: $buttonRadius;
+            
+        }
+        input{
+            height: $inputAndButtonHeight;
+        }
+        textarea{
+            height: 50px;
+        }
+        
+        button,input[type="submit"]{
+            background-color: $buttonBackColor;
+            color:$buttonColor;
+            cursor: pointer;
+            width:$inputAndButtonWidth;
+            margin:0 auto;
+            border-radius: $buttonRadius;
+            height: $inputAndButtonHeight;
+        }
+        button:hover{
+            opacity: $buttonOpacity;
+        }
+    }
+    
+}

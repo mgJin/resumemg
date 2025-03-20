@@ -1,24 +1,56 @@
-form#projectForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return false",enctype="multipart/form-data")
-        if(project)
-                label(for="videofile") Video File
-                input(id="videofile",type="file",name="videofile",accept="video/*")            
-                input(name="title",type="text",placeholder="프로젝트 명",value=project.title)
-                input(name="startDate",type="date",placeholder ="시작 날짜",value=project.startDate)
-                input(name="endDate",type="date",placeholder="끝 날짜",value=project.endDate)
-                input(name="headCount",type="number",placeholder="참여인원",value=project.headCount)
-                textarea(name="summary",placeholder="프로젝트 요약",row="5",cols="30")
-                textarea(name="description",placeholder="프로젝트 설명",row="5",cols="30")
-                
-                button#putProjectBtn(data-method="put",data-projectid=`${project._id}`) 프로젝트 수정
-        else
-                label(for="videofile") Video File
-                input(id="videofile",type="file",name="videofile",accept="video/*")
-                input(name="title",type="text",placeholder="프로젝트 명")
-                input(name="startDate",type="date",placeholder ="시작 날짜")
-                input(name="endDate",type="date",placeholder="끝 날짜")
-                input(name="headCount",type="number",placeholder="참여인원")
-                textarea(name="summary",placeholder="프로젝트 요약",row="5",cols="30")
-                textarea(name="description",placeholder="프로젝트 설명",row="5",cols="30")
-                button#postProjectBtn(data-method="post") 프로젝트 추가
+extends ../popbase
 
-script(src="/assets/js/fetchData.js")
+block content
+        form#projectForm.infoForm.metaForm(data-userid=`${loggedInUser._id}`,onsubmit="return false",enctype="multipart/form-data")
+            if(project)
+                div.inputBox
+                    label(for="videofile") Video File
+                    input(id="videofile",type="file",name="videofile",accept="video/*")            
+                div.inputBox
+                    label(for="title") 프로젝트
+                    input(id="title",name="title",type="text",placeholder="프로젝트 명",value=project.title)
+                div.inputBox
+                    label(for="startDate") 시작날짜
+                    input(id="startDate",name="startDate",type="date",placeholder ="시작 날짜",value=project.startDate)
+                div.inputBox
+                    label(for="endDate") 완료날짜
+                    input(id="endDate",name="endDate",type="date",placeholder="끝 날짜",value=project.endDate)
+                div.inputBox
+                    label(for="headCount") 참여인원수
+                    input(id="headCount",name="headCount",type="number",placeholder="참여인원",value=project.headCount)
+                div.inputBox
+                    label(for="summary") 프로젝트 요약
+                    textarea(id="summary",name="summary",placeholder="프로젝트 요약",row="5",cols="30")
+                div.inputBox
+                    label(for="description") 프로젝트 설명
+                    textarea(id="description",name="description",placeholder="프로젝트 설명",row="5",cols="30")
+                div.inputBox
+                    label
+                    button#putProjectBtn(data-method="put",data-projectid=`${project._id}`) 프로젝트 수정
+            else
+                div.inputBox
+                    label(for="videofile") Video File
+                    input(id="videofile",type="file",name="videofile",accept="video/*")
+                div.inputBox
+                    label(for="title") 프로젝트
+                    input(id="title",name="title",type="text",placeholder="프로젝트 명")
+                div.inputBox
+                    label(for="startDate") 시작날짜
+                    input(id="startDate",name="startDate",type="date",placeholder ="시작 날짜")
+                div.inputBox
+                    label(for="endDate") 완료날짜
+                    input(id="endDate",name="endDate",type="date",placeholder="끝 날짜")
+                div.inputBox
+                    label(for="headCount") 참여인원수
+                    input(id="headCount",name="headCount",type="number",placeholder="참여인원")
+                div.inputBox
+                    label(for="summary") 프로젝트 요약
+                    textarea(id="summary",name="summary",placeholder="프로젝트 요약",row="5",cols="30")
+                div.inputBox
+                    label(for="description") 프로젝트 설명
+                    textarea(id="description",name="description",placeholder="프로젝트 설명",row="5",cols="30")
+                div.inputBox
+                    label
+                    button#postProjectBtn(data-method="post") 프로젝트 추가
+block scripts
+        script(src="/assets/js/fetchData.js")

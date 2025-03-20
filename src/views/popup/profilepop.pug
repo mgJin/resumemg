@@ -1,11 +1,31 @@
-form#profileForm.infoForm(data-userid=`${loggedInUser._id}`,onsubmit="return false",enctype="multipart/form-data")
-    input(name="avatar",type="file",accept="image/*")
-    input(type=text,name="name",value=loggedInUser.name,placeholder=이름)
-    input(type=text,name="age",value=loggedInUser.age,placeholder=나이)
-    input(type=text,name="address",value=loggedInUser.address,placeholder=주소)
-    input(type=email,name="email",value=loggedInUser.email,placeholder=이메일)
-    input(type=text,name="phoneNumber",value=loggedInUser.phoneNumber,placeholder=폰번호)
-    input(type=text,name="sex",value=loggedInUser.sex,placeholder=성별)
-    button#putProfileBtn(data-method="PUT") 프로필 수정
+extends ../popbase
 
-script(src="/assets/js/fetchData.js")
+block content
+    form#profileForm.infoForm.metaForm(data-userid=`${loggedInUser._id}`,onsubmit="return false",enctype="multipart/form-data")
+        div.inputBox
+            label(for="avatar") 프로필 사진
+            input(id="avatar",name="avatar",type="file",accept="image/*")
+        div.inputBox
+            label(for="name") 이름
+            input(id="name",type=text,name="name",value=loggedInUser.name,placeholder=이름)
+        div.inputBox
+            label(for="age") 나이
+            input(id="age",type=text,name="age",value=loggedInUser.age,placeholder=나이)
+        div.inputBox
+            label(for="address") 주소
+            input(id="address",type=text,name="address",value=loggedInUser.address,placeholder=주소)
+        div.inputBox
+            label(for="email") 이메일
+            input(id="email",type=email,name="email",value=loggedInUser.email,placeholder=이메일)
+        div.inputBox
+            label(for="phoneNumber") 폰번호
+            input(id="phoneNumber",type=text,name="phoneNumber",value=loggedInUser.phoneNumber,placeholder=폰번호)
+        div.inputBox
+            label(for="sex") 성별
+            input(id="sex",type=text,name="sex",value=loggedInUser.sex,placeholder=성별)
+        div.inputBox
+            label
+            button#putProfileBtn(data-method="PUT") 프로필 수정
+
+block scripts
+    script(src="/assets/js/fetchData.js")
