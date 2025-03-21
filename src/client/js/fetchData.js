@@ -162,7 +162,6 @@ const handlePutProject = async(e)=> {
     const target = `project`
     const {method} = e.target.dataset
     const fullURL = path.join(baseURL,userid,target);
-
     
     fetchData.append("projectid",projectid);
     result = await fetch(fullURL,{

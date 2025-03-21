@@ -6,35 +6,32 @@ include mixins/projectcapsule
 block content
     div.resumeContainer
         if(loggedIn)    
-            
-            div.profile.infoBox
-                
+            div.profile.infoBox  
                 ul
                     li.name
                         span.kind 이름
-                        span #{user.name}
+                        span.detail__info #{user.name}
                     li.age
                         span.kind 나이 
-                        span #{user.age}
+                        span.detail__info #{user.age}
                     li.sex
                         span.kind 성별
-                        span #{user.sex}
+                        span.detail__info #{user.sex}
                     li.email
-                        
                         span.kind 
                             i.fas.fa-envelope
-                        span #{user.email}   
+                        span.detail__info #{user.email}   
                     li.phone
                         span.kind
                             i.fas.fa-phone
-                        span #{user.phoneNumber}
+                        span.detail__info #{user.phoneNumber}
                     li.address
                         span.kind 
                             i.fas.fa-location-dot
-                        span #{user.address}
+                        span.detail__info #{user.address}
                 div.profileImage
                     img(src=`/${user.avatarUrl}`, alt="이미지없음")
-
+            hr
             div.career.infobox
                 div.divide 경력
                 div
@@ -43,7 +40,7 @@ block content
                             +career(career,false)
                         else
                             span.empty__message No Career Found
-                                
+            hr                
             div.project.infobox
                 div.divide 프로젝트
                 div

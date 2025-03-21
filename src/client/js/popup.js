@@ -62,6 +62,7 @@ const handleEachPopup = (e) =>{
         } = e.target;
         
         const fullURL = path.join(baseURL,url,projectid);
+        
         popUp(fullURL);
     }
 }

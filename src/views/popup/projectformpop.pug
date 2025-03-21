@@ -20,10 +20,10 @@ block content
                     input(id="headCount",name="headCount",type="number",placeholder="참여인원",value=project.headCount)
                 div.inputBox
                     label(for="summary") 프로젝트 요약
-                    textarea(id="summary",name="summary",placeholder="프로젝트 요약",row="5",cols="30")
+                    textarea(id="summary",name="summary",placeholder="프로젝트 요약",row="5",cols="30") #{project.summary}
                 div.inputBox
                     label(for="description") 프로젝트 설명
-                    textarea(id="description",name="description",placeholder="프로젝트 설명",row="5",cols="30")
+                    textarea(id="description",name="description",placeholder="프로젝트 설명",row="5",cols="30") #{project.description}
                 div.inputBox
                     label
                     button#putProjectBtn(data-method="put",data-projectid=`${project._id}`) 프로젝트 수정

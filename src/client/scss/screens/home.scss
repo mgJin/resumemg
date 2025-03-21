@@ -1,11 +1,11 @@
 //최상단 박스
 .resumeContainer{
-    border: solid 1px $deep1;
+    
 }
 //프로필,커리어,프로젝트를 각각 담는 박스
 .infobox{
     margin: 50px;
-    border:solid 1px $deep2;
+    
 }
 //대분류
 .divide{
@@ -20,6 +20,9 @@
 //Mixin들 title 
 .homeMixinTitle{
     font-size:x-large;
+}
+hr{
+    opacity: 50%;
 }
 // }
 // .profile ul li span{

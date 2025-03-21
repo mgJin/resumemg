@@ -24,6 +24,7 @@ export const postSignup = async(req,res)=>{
             age,
             address,
             email,
+            sex,
             phoneNumber
         },
         file
@@ -43,6 +44,7 @@ export const postSignup = async(req,res)=>{
         address,
         email,
         phoneNumber,
+        sex,
         avatarUrl:file.path
     });
     console.log(newUser);

@@ -1,6 +1,6 @@
 
 .profile{
-    border:solid 1px $deep2;
+    
     display:flex;
     justify-content: space-between;
     
@@ -9,7 +9,7 @@
 .profile ul{
     display: flex;
     flex-wrap:wrap;
-    border:solid 1px $deep3;
+    
     width:70%;
 }
 //프로필 항목들
@@ -17,26 +17,32 @@
     flex:0 1 calc(30.33% - 10px);
     display: flex;
     margin:5px;
-    border: solid 1px $deep4;
+    // border: 1px solid $deep1;
+    
 }
 //프로필 항목들 분류
 .kind{
     margin-right:10px;
-    width:40px;
+    width:50px;
     height: 100%;
-    border:solid 1px $deep4;
     display: flex;
     text-align: center;
     justify-content: center;
+    
 }
 //프로필 이미지 박스
 .profileImage{
-    width:$imagesize;
-    height: $imagesize;
-    border:solid 1px $deep4;
+    width:$imageBoxSize;
+    height:$imageBoxSize;
+    
 }
 //프로필 이미지(사진에 직접 적용)
 .profileImage img{
-    width:$imagesize;
-    height: $imagesize;
+    width:$imagewidth;
+    height: $imageheight;
+
+}
+.detail__info{
+    
+    width:300px;
 }

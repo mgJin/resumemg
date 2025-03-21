@@ -159,8 +159,20 @@ export const putProject = async(req,res)=>{
             videofile
         }
     } = req;
-    console.log("1 :",videofile);
-    const videofilepath = videofile[0].path;
+    let project = null;
+    try{
+        project = await Project.findById(projectid);
+        
+    }catch(e){
+        console.log("error:", e);
+    }
+    if(!project){
+        return res.status(500).end();
+    }
+    
+    
+    const videofilepath = videofile?videofile[0].path:project.videofileUrl;
+
     
     const target = await Proejct.findById(projectid);
     if(!target){
@@ -168,7 +180,7 @@ export const putProject = async(req,res)=>{
     }
     
     const newProject = await Project.findByIdAndUpdate(projectid,{
-        title,startDate,endDate,headCount,description,
+        title,startDate,endDate,headCount,description,summary,
         videofileUrl:videofilepath
     });
 
