@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "Resume for JMG",
   "scripts": {
-    "dev": "nodemon",
-    "assets": "webpack"
+    "dev:server": "nodemon",
+    "dev:assets": "webpack --mode=development --watch",
+    "build:server": "babel src -d build --ignore src/client",
+    "build:assets": "webpack --mode=production",
+    "build":"npm build:server && build:assets",
+    "start":"node build/config/init.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +21,7 @@
   },
   "homepage": "https://github.com/mgJin/resumemg#readme",
   "dependencies": {
+    "@babel/cli": "^7.26.4",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-session": "^1.18.1",

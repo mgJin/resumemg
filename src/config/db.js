@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const DB_NAME = "resumemg";
 
-mongoose.connect(`mongodb://127.0.0.1:27017/${DB_NAME}`);
+
+mongoose.connect(process.env.DB_URL);
 
 const db = mongoose.connection;
 

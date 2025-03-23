@@ -14,8 +14,8 @@ module.exports={
     fetchData : `${BASE_JS}/fetchData.js`,
     video:`${BASE_JS}/video.js`,
   },
-  mode:"development",
-  watch:true,
+  
+  
   plugins: [new MiniCssExtractPlugin({
     filename:"css/style.css"
   })],
