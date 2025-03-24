@@ -1,7 +1,8 @@
 import User from "../models/User";
-
+import axios from "axios";
 export const Home = async(req,res)=>{
     //세션에 로그인이 안되어있다면
+    
     if(!req.session.loggedIn){
         return res.render("home");
     }
@@ -45,7 +46,7 @@ export const postSignup = async(req,res)=>{
         email,
         phoneNumber,
         sex,
-        avatarUrl:file.path
+        avatarUrl:file?file.path:null
     });
     console.log(newUser);
 
@@ -56,8 +57,9 @@ export const getLogin = (req,res)=>{
     return res.render("login");
 }
 export const postLogin = async(req,res)=>{
+    console.log("reqbody:",req.body);
     const {userId,password} = req.body;
-
+    
     const user = await User.findOne({userId}).populate("careers").populate("projects");
     //user 존재하는지 검사
     if(!user){
@@ -71,9 +73,23 @@ export const postLogin = async(req,res)=>{
             error:"check input"
         });
     }
-    console.log("user : ",user);
+    
     req.session.loggedIn = true,
     req.session.user = user;
+    
+    
 
     return res.redirect("/");
 }
+
+// export const autoLogin = async()=>{
+//     try{
+//         const response = await axios.post('http://localhost:8000/login',{
+//             userId:'admin',
+//             password:'1111'
+//         })
+//         console.log("response:",response.data)
+//     }catch(e){
+//         console.log("error:",e);
+//     }
+// }

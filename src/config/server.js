@@ -5,6 +5,7 @@ import popupRouter from "../router/popupRouter";
 import editRouter from "../router/editRouter";
 import morgan from "morgan";
 import { localsMiddleware } from "../middleware/commonMiddleware";
+import { autoLogin } from "../controller/homeController";
 
 const path = require("path");
 const app = express();
@@ -34,6 +35,15 @@ app.use((req,res,next)=>{
         next();
     })
 })
+
+// app.use((req,res,next)=>{
+//     // if(!req.session.loggeIn){
+//     //     autoLogin();
+//     // }
+//     console.log("미들웨어:",req.session);
+//     next();
+// })
+
 
 app.use(localsMiddleware);
 
