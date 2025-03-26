@@ -46,7 +46,7 @@ export const postSignup = async(req,res)=>{
         email,
         phoneNumber,
         sex,
-        avatarUrl:file?file.path:null
+        avatarUrl:file?file.location:null
     });
     console.log(newUser);
 

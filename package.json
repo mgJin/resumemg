@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/mgJin/resumemg#readme",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.775.0",
     "@babel/cli": "^7.26.4",
     "axios": "^1.8.4",
     "dotenv": "^16.4.7",
@@ -29,6 +30,7 @@
     "mongoose": "^8.10.1",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "multer-s3": "^3.0.1",
     "path-browserify": "^1.0.1",
     "pug": "^3.0.3"
   },

@@ -26,6 +26,7 @@ export const putProfile = async(req,res)=>{
         file
     } = req
     let user;
+    console.log(file);
     try{
         user =  await User.findById(id);
         
@@ -40,7 +41,7 @@ export const putProfile = async(req,res)=>{
     try{
         user = await User.findByIdAndUpdate(id,{
             name,age,address,email,phoneNumber,sex,
-            avatarUrl:file?file.path:user.avatarUrl
+            avatarUrl:file?file.location:user.avatarUrl
         })
     }catch(error){
         console.log("error occur :",error);
@@ -113,16 +114,17 @@ export const postProject = async(req,res) =>{
         params :{
             id
         },
-        files:{
-            videofile,
+        // files:{
+        //     videofile,
             
-        }
+        // },
+        file
     }=req;
     
     let formattedStarDate = formatDate(startDate);
     let formattedEndDate = formatDate(endDate);
     
-    const videofilepath = videofile[0].path;
+    // const videofilepath = videofile[0].path;
     
     let user = await User.findById(id);
     if(!user){
@@ -136,7 +138,7 @@ export const postProject = async(req,res) =>{
             endDate:formattedEndDate,
             headCount,description,
             owner:id,
-            videofileUrl:videofilepath,
+            videofileUrl:file?file.location:'',
             summary
         })
         user.projects.push(newProject._id);
@@ -155,9 +157,7 @@ export const putProject = async(req,res)=>{
         body:{
             title,startDate,endDate,headCount,description,projectid,summary
         },
-        files:{
-            videofile
-        }
+        file
     } = req;
     let project = null;
     try{
@@ -169,10 +169,7 @@ export const putProject = async(req,res)=>{
     if(!project){
         return res.status(500).end();
     }
-    
-    
-    const videofilepath = videofile?videofile[0].path:project.videofileUrl;
-
+    console.log(file);
     
     const target = await Proejct.findById(projectid);
     if(!target){
@@ -181,7 +178,7 @@ export const putProject = async(req,res)=>{
     
     const newProject = await Project.findByIdAndUpdate(projectid,{
         title,startDate,endDate,headCount,description,summary,
-        videofileUrl:videofilepath
+        videofileUrl:file?file.location:''
     });
 
     return res.status(201).end();

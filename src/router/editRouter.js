@@ -5,6 +5,6 @@ const editRouter = express.Router();
 
 editRouter.route("/").get(edit);
 editRouter.route("/:id/profile").put(imageUploadFiles.single("avatar"),putProfile);
-editRouter.route("/:id/project").post(imageAndVideoUploadFiles.fields([{name:"videofile",maxCount:1}]),postProject).put(imageAndVideoUploadFiles.fields([{name:"videofile",maxCount:1}]),putProject).delete(deleteProject);
+editRouter.route("/:id/project").post(videoUploadFiles.single("videofile"),postProject).put(videoUploadFiles.single("videofile"),putProject).delete(deleteProject);
 editRouter.route("/:id/career").post(postCareer).put(putCareer).delete(deleteCareer);
 export default editRouter;
