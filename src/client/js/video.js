@@ -12,12 +12,35 @@ const currentTime = document.getElementById("currentPlayTime");
 const timeBar = document.getElementById("videoPlayTimeBar");
 
 
+
+
 let volumeValue = 0.5;
 video.volume = volumeValue;
 let mouseMoveTimeout=null;
 let mouseLeaveTimeout = null;
-const handleVideoPlay = (e)=>{
 
+
+const formatTime = (time) =>{
+    let hour = Math.floor(time/60);
+    let minute = Math.floor(time%60);
+    hour = hour.toString().padStart(2,"0");
+    minute = minute.toString().padStart(2,"0");
+    let formattedTime = `${hour} : ${minute}`;
+    return formattedTime;
+}
+
+
+if(video.readyState==4){
+    totalTime.innerText=formatTime(Math.floor(video.duration));
+    timeBar.max = Math.floor(video.duration);
+    console.log("비디오 총길이:",video.duration);
+    console.log("비디오:",video);
+    console.log("비디오 타임바:", timeBar);
+}
+
+
+const handleVideoPlay = (e)=>{
+    console.log("영상시작 : ",video.readyState);
     if(video.paused){
         video.play();
     }else{
@@ -45,8 +68,18 @@ const handleVideoVolume = (e)=>{
 }
 
 const handleLoadedMetaData =(e)=>{
+    console.log(e);
     totalTime.innerText=formatTime(Math.floor(video.duration));
     timeBar.max = Math.floor(video.duration);
+    console.log("비디오 총길이:",video.duration);
+    console.log("비디오:",video);
+    console.log("비디오 타임바:", timeBar);
+}
+
+
+const handleOnLoadedData = (e)=>{
+    console.log("e 정보:",e);
+    console.log(video);
 }
 
 const handleTimeUpdate = (e)=>{
@@ -90,20 +123,16 @@ const hideController = ()=>{
  * @param {Number} time
  * @returns hour : minute 로 formatting 된 문자열
  */
-const formatTime = (time) =>{
-    let hour = Math.floor(time/60);
-    let minute = Math.floor(time%60);
-    hour = hour.toString().padStart(2,"0");
-    minute = minute.toString().padStart(2,"0");
-    let formattedTime = `${hour} : ${minute}`;
-    return formattedTime;
-}
 
 
 playBtn.addEventListener("click",handleVideoPlay);
 muteBtn.addEventListener("click",handleVideoMute);
 videoVolumeRange.addEventListener("input",handleVideoVolume)
+
 video.addEventListener("loadeddata",handleLoadedMetaData);
+video.addEventListener("canplay",handleLoadedMetaData)
+video.addEventListener("canplaythrough",handleLoadedMetaData)
+
 video.addEventListener("timeupdate",handleTimeUpdate);
 timeBar.addEventListener("input",handleTimeBar);
 // videoController.addEventListener("",handleVideoController);

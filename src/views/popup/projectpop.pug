@@ -1,5 +1,6 @@
 extends ../base
 
+
 block content
     div.project__box 
         if(project.videofileUrl)
@@ -42,7 +43,7 @@ block content
             hr
             div.projectDescription.project_detail
                 span.description.projectKind 프로젝트 설명
-                span.description=project.description
+                span.description.longText=project.description
             
 block scripts
     script(src="/assets/js/video.js")

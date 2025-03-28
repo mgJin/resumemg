@@ -37,7 +37,7 @@ block content
             div.career.infobox
                 
                 div
-                    button#careerPopBtn(data-url=`postcareer`) 클릭
+                    button#careerPopBtn(data-url=`postcareer`) 경력 추가
                     ul#career__ul
                         each career in user.careers
                             +career(career,true)
@@ -48,7 +48,7 @@ block content
             
             div.project.infobox
                 div
-                    button#projectPopBtn(data-url=`postproject`) 클릭
+                    button#projectPopBtn(data-url=`postproject`) 프로젝트 추가
                     
                     ul#project__ul
                         each project in user.projects

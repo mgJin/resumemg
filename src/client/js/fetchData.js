@@ -195,7 +195,7 @@ const handleDeleteProject = async(e)=>{
         })
 
         if(result.status===201){
-            window.location.reload();
+            window.location.replace("/edit");
         }
 
     }

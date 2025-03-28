@@ -7,7 +7,7 @@ mixin career(info,btnShow)
                 span.career__companyName.homeMixinTitle=info.companyName
                 span.career__role=info.role
             div.career__descriptionbox
-                span.career__description=info.description
+                span.career__description.longText=info.description
             
         if(btnShow)
             button.careerEditBtn(data-url="editCareer") 편집
